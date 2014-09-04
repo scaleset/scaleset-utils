@@ -16,6 +16,10 @@ public class Coerce {
         this.mapper = mapper;
     }
 
+    public static Coerce getInstance() {
+        return instance;
+    }
+
     public static <T> T to(Object value, Class<T> type) {
         return instance.convert(value, type);
     }

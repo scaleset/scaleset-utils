@@ -12,8 +12,13 @@ import java.util.Map;
 public class Extensible {
 
     private Map<String, Object> any = new HashMap<String, Object>();
+    private Coerce coerce = Coerce.getInstance();
 
     public Extensible() {
+    }
+
+    public Extensible(Coerce coerce) {
+        this.coerce = coerce;
     }
 
     @JsonAnyGetter
@@ -30,6 +35,18 @@ public class Extensible {
         if (any.containsKey(key)) {
             result = any.get(key);
         }
+        return result;
+    }
+
+    public <T> T get(Class<T> type, String key) {
+        Object value = get(key);
+        T result = coerce.convert(value, type);
+        return result;
+    }
+
+    public <T> T get(Class<T> type, String key, T fallback) {
+        Object value = get(key);
+        T result = coerce.convert(value, type, fallback);
         return result;
     }
 
