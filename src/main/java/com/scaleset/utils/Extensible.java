@@ -21,6 +21,15 @@ public class Extensible {
         this.coerce = coerce;
     }
 
+    public static void replaceEmptyStringsWithNull(Map<String, Object> map) {
+        for (String key : map.keySet()) {
+            Object value = map.get(key);
+            if ("".equals(value)) {
+                map.put(key, null);
+            }
+        }
+    }
+
     @JsonAnyGetter
     public Map<String, Object> anyGetter() {
         return any;
@@ -54,12 +63,24 @@ public class Extensible {
         return Coerce.toBoolean(key, fallback);
     }
 
+    public Boolean getBoolean(String key) {
+        return Coerce.toBoolean(any.get(key));
+    }
+
     public Double getDouble(String key, Number fallback) {
         return Coerce.toDouble(any.get(key), fallback);
     }
 
+    public Double getDouble(String key) {
+        return Coerce.toDouble(any.get(key));
+    }
+
     public Integer getInteger(String key, Number fallback) {
         return Coerce.toInteger(any.get(key), fallback);
+    }
+
+    public Integer getInteger(String key) {
+        return Coerce.toInteger(any.get(key));
     }
 
     public String getString(String key, String fallback) {
@@ -81,15 +102,6 @@ public class Extensible {
 
     public void replaceEmptyStringsWithNull() {
         replaceEmptyStringsWithNull(any);
-    }
-
-    public static void replaceEmptyStringsWithNull(Map<String, Object> map) {
-        for (String key : map.keySet()) {
-            Object value = map.get(key);
-            if ("".equals(value)) {
-                map.put(key, null);
-            }
-        }
     }
 
 }
