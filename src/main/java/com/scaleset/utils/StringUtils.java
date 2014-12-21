@@ -26,12 +26,11 @@ public class StringUtils {
 
     /**
      * Copied from Spring Framework StringUtils
-     * <p/>
+     * <p>
      * Check whether the given CharSequence has actual text. More specifically,
      * returns <code>true</code> if the string not <code>null</code>, its length
      * is greater than 0, and it contains at least one non-whitespace character.
-     * <p/>
-     * <p/>
+     * </p>
      * <pre>
      * StringUtils.hasText(null) = false
      * StringUtils.hasText("") = false
@@ -61,12 +60,11 @@ public class StringUtils {
 
     /**
      * Copied from Spring Framework StringUtils
-     * <p/>
+     * <p>
      * Check that the given CharSequence is neither <code>null</code> nor of
      * length 0. Note: Will return <code>true</code> for a CharSequence that
      * purely consists of whitespace.
-     * <p/>
-     * <p/>
+     * </p>
      * <pre>
      * StringUtils.hasLength(null) = false
      * StringUtils.hasLength("") = false
